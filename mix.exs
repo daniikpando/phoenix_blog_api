@@ -20,7 +20,7 @@ defmodule BlogReal.Mixfile do
   def application do
     [
       mod: {BlogReal.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:ex_machina, :logger, :runtime_tools]
     ]
   end
 
@@ -40,7 +40,8 @@ defmodule BlogReal.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:ex_machina, "~> 2.2", only: :test}
     ]
   end
 
@@ -54,7 +55,7 @@ defmodule BlogReal.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      "test": ["ecto.drop", "ecto.create", "ecto.migrate", "test"]
     ]
   end
 end

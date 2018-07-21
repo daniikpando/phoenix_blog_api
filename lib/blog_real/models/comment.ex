@@ -10,10 +10,11 @@ defmodule BlogReal.Models.Comment do
     timestamps()
   end
 
+  @attr [:content, :article_id]
   def changeset(comment, attrs) do
     comment
-    |> cast(attrs, [:content])
-    |> validate_required([:content])
+    |> cast(attrs, @attr)
+    |> validate_required(@attr)
     |> validate_length(:content, min: 2)
     |> validate_length(:content, max: 200)
     |> assoc_constraint(:article)

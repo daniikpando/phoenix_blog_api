@@ -1,13 +1,7 @@
 defmodule BlogReal.Models.ArticleTest do
   use BlogReal.DataCase
   alias BlogReal.Models.Article
-
-  @attr_valid %{
-    title: "Hello World in phoenix",
-    content: "Hello World in phoenix",
-    description: "Hello World in phoenix",
-    metadata: %{"something" => "something"}
-  }
+  import BlogReal.Factory
 
   @attr_invalid %{
     title: "Hell",
@@ -17,13 +11,13 @@ defmodule BlogReal.Models.ArticleTest do
   }
 
   test "valid article" do
-    changeset = Article.changeset(%Article{}, @attr_valid)
+    valid_attr = params_for(:article)
+    changeset = Article.changeset(%Article{}, valid_attr)
     assert changeset.valid?
   end
 
   test "invalid article" do
     changeset = Article.changeset(%Article{}, @attr_invalid)
-    IO.inspect changeset.errors()
     refute changeset.valid?
   end
 

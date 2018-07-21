@@ -11,6 +11,7 @@ defmodule BlogReal.Models.Article do
     field :views, :integer
 
     has_many(:comments, BlogReal.Models.Comment)
+    
     timestamps()
   end
 
