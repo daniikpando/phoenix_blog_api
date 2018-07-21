@@ -1,14 +1,6 @@
 defmodule BlogRealWeb.Router do
   use BlogRealWeb, :router
 
-  # pipeline :browser do
-  #   plug :accepts, ["html"]
-  #   plug :fetch_session
-  #   plug :fetch_flash
-  #   plug :protect_from_forgery
-  #   plug :put_secure_browser_headers
-  # end
-
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -17,8 +9,8 @@ defmodule BlogRealWeb.Router do
     pipe_through :api
 
     scope "/v1", V1, as: :v1 do
-      resources "/articles", ArticleController do
-        resources "/comments", CommentController
+      resources "/articles", ArticleController, except: [:new, :edit] do
+        resources "/comments", CommentController, except: [:new, :edit]
       end
     end
   end

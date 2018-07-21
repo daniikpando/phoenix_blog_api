@@ -20,7 +20,8 @@ defmodule BlogReal.Mixfile do
   def application do
     [
       mod: {BlogReal.Application, []},
-      extra_applications: [:ex_machina, :logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools]
+      # :ex_machina
     ]
   end
 
